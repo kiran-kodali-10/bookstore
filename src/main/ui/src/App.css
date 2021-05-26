@@ -1,3 +1,19 @@
+
+:root{
+  --main-bg-color: white;
+  --dark-bg-color: black;
+}
+
+/* Styles for card component */
+
+.card{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 30px 0px;
+  background-color: var(--main-bg-color);
+}
+
 /* .App {
   text-align: center;
 }
