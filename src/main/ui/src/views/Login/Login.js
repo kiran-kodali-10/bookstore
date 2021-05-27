@@ -1,47 +1,21 @@
-import { Button, Grid, makeStyles, TextField, withStyles } from '@material-ui/core';
+import { Button, Grid, makeStyles,  } from '@material-ui/core';
 import React from 'react';
 import styles from './loginStyle';
+import CustomTextField from '../../components/CustomTextField/CustomTextField';
 
 const useStyles = makeStyles(styles);
-
-const CustomTextField = withStyles({
-    root: {
-        color: "white !important",
-        marginBottom: "30px",
-        borderColor: "white",
-
-        '& label': {
-            color: "#fff",
-        },
-        '& .MuiFilledInput-root': {
-            background: "#333"
-        },
-        '& .MuiFormLabel-root': {
-            color: "#fff",
-        },
-        '& .MuiInputBase-root': {
-            color: '#fff'
-        },
-        '& .MuiInput-underline:before': {
-            borderBottom: "2px solid #fff",
-        }
-
-    }
-})(TextField);
 
 function Login(props) {
 
     const classes = useStyles();
 
-
-
     return (
         <div
             className={classes.container}
         >
-            <div className={classes.headerStyle}>
+            {/* <div className={classes.headerStyle}>
                 <h1>Booksotre</h1>
-            </div>
+            </div> */}
             <Grid
                 container
                 direction="row"
@@ -49,8 +23,6 @@ function Login(props) {
                 alignItems="center"
                 className={classes.container}
             >
-
-
                 <Grid
                     item
                     className={classes.gridItem}
@@ -84,7 +56,6 @@ function Login(props) {
                         </Button>
                     </div>
                 </Grid>
-
             </Grid>
         </div>
     )

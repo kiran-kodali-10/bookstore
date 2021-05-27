@@ -24,3 +24,15 @@ CREATE TABLE `book` (
 );
 
 ALTER TABLE `book` ADD FOREIGN KEY (`book_id`) REFERENCES `users` (`id`);
+
+INSERT INTO users VALUES (1,'KIRAN','KODLAI','kiranrm61923@gmail.com','2021-01-01', 91);
+INSERT INTO users VALUES (2,'KIRAN','KODLAI','kiranrm61923@gmail.com','2021-01-01', 91);
+INSERT INTO users VALUES (3,'KIRAN','KODLAI','kiranrm61923@gmail.com','2021-01-01', 91);
+INSERT INTO users VALUES (4,'KIRAN','KODLAI','kiranrm61923@gmail.com','2021-01-01', 91);
+
+INSERT INTO book VALUES (1,'java se','programming','hcbert',4);
+INSERT INTO book VALUES (2,'java se','programming','hcbert',4);
+INSERT INTO book VALUES (3,'java se','programming','hcbert',4);
+INSERT INTO book VALUES (4,'java se','programming','hcbert',4);
+
+commit;

@@ -13,7 +13,7 @@ import com.kirankodali.bookstorev1.business.bean.UserBean;
 import com.kirankodali.bookstorev1.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://locolhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
 	@Autowired
@@ -22,6 +22,7 @@ public class UserController {
 	@GetMapping(path = "users")
 	public ResponseEntity<List<UserBean>> getUserDetails() throws Exception{
 		List<UserBean> userBean = userService.getAllUserDetails();
+		System.out.println(userBean);
 		return new ResponseEntity<List<UserBean>>(userBean, HttpStatus.OK);
 	}
 
