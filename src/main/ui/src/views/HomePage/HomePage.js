@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import Card from '../../components/Card/Card';
-import Grid from '@material-ui/core/Grid';
+import {Card, Grid, CardContent, makeStyles, Button } from '@material-ui/core';
+import styles  from './homePageStyle';
+
+const useStyles = makeStyles(styles);
 
 export default function Home(props) {
-    const arr = [0, 1, 2, 3, 4, 5];
 
+    const classes = useStyles();
     const [books, setBooks] = useState([]);
     //  Api call to fetch the books
     useEffect(
         () => {
-            fetch('http://localhost:8080/books')
-               .then(result => result.json())
-               .then(data => setBooks(data))
+            fetch('/books')
+                .then(result => result.json())
+                .then(data => setBooks(data))
                 .catch(err => console.log(err))
-        },[]);
+        }, []);
 
     return (
-        <Grid container justify="center">
+        <Grid container  alignItems="center" spacing={5}>
             {
                 books.map((value, key) => {
                     console.log(value);
@@ -24,13 +26,19 @@ export default function Home(props) {
                         <Grid
                             item
                             key={key}
-                            md={6}
+                            md={4}
                             sm={6}
                             xs={8}
+                            
                         >
-                            <Card>
-                                <h3>{value["bookTitle"]}</h3>
-                            </Card>
+                                <Card raised="true" className={classes.cardStyle}>
+                                    <CardContent>
+                                        <h3>{value["bookTitle"]}</h3>
+                                        <p> {value["author"]} </p>
+                                        <p> {value["rating"]} </p>
+                                        <Button className={classes.buttonStyle}>View</Button>
+                                    </CardContent>
+                                </Card>
                         </Grid>
                     )
                 })

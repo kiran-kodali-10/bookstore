@@ -5,13 +5,13 @@ const adminStyles =({
         top: "0",
     },
     navbar:{
-        backgroundColor: "black",
+        // backgroundColor: "black",
         top: "0",
         width: "100%",
-        height: "100px",
+        height: "80px",
     },
     content:{
-        padding: "10px 30px",
+        padding: "57px 30px",
     }
 
 })
