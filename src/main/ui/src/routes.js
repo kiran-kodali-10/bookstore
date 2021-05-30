@@ -1,4 +1,5 @@
 import Home from "./views/HomePage/HomePage";
+import AdminConsole from './views/AdminConsole/Adminconsole';
 
 const routes = [
     {
@@ -6,17 +7,21 @@ const routes = [
         name: "home",
         component: Home
     },
+    // {
+    //     path: "/about",
+    //     name: "About",
+    //     component: Home
+    // },
+    // {
+    //     path: "/store",
+    //     name: "Store",
+    //     component: Home
+    // },
     {
-        path: "/about",
-        name: "About",
-        component: Home
+        path: "/admin",
+        name: "Admin",
+        component: AdminConsole
     },
-    {
-        path: "/store",
-        name: "Store",
-        component: Home
-    },
-
 ]
 
 export default routes;

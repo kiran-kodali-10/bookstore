@@ -1,21 +1,24 @@
 import Login from './views/Login/Login';
-import { Switch, Router, Route } from 'react-router-dom';
+import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import './App.css'
-// import HomePage from './views/HomePage/HomePage';
 import Admin from './layout/Admin';
+// import { Provider } from 'react-redux';
 
 const history = createBrowserHistory();
 
 function App() {
   return (
     <div className="App">
-      <Router history={history}>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/home" render={(props) => <Admin {...props} />} />
-        </Switch>
-      </Router>
+      {/* <Provider> */}
+        <BrowserRouter >
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/home" render={(props) => <Admin {...props} />} />
+            <Route exact path="/admin" render={(props) => <Admin {...props} />} />
+          </Switch>
+        </BrowserRouter>
+      {/* </Provider> */}
     </div>
   );
 }

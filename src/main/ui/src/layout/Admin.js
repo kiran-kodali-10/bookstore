@@ -11,6 +11,8 @@ const switchRoutes = (
     <Switch>
         {
             routes.map((prop, key) => {
+                console.log(prop.path)
+                console.log(prop.component)
                 return (
                     <Route
                         path={prop.path}
