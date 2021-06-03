@@ -2,6 +2,8 @@ package com.kirankodali.bookstorev1.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,7 +12,8 @@ import javax.persistence.Table;
 public class BookEntity {
 	
 	@Id
-	@Column(name = "book_id")	
+	@Column(name = "book_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer bookId;
 	
 //	@Column(name = "book_title")

@@ -29,6 +29,24 @@ public class BookDaoWrapper {
 		return bookBeanList;
 	}
 	
+	// Method to upload a new book
+	public Integer uploadNewBook(BookBean bookBean) {
+		
+		// Convert BookBean to BookEntity
+		BookEntity bookEntity = new BookEntity();
+		BeanUtils.copyProperties(bookBean, bookEntity);
+		
+		bookEntity = bookDao.save(bookEntity);
+		
+		return bookEntity.getBookId();
+	}
 	
+	
+	// Method to delete a book by its id
+	public void deleteBookById(Integer bookId) {
+		
+		bookDao.deleteById(bookId);
+		
+	}
 
 }

@@ -23,7 +23,6 @@ export default function Navbar(props) {
                     <div className={classes.linkPlacement}>
                         {
                             props.routes.map((route, key) => {
-                                console.log(route.path)
                                 const listItemClasses = classNames({
                                     [classes.linkStyle]: true,
                                     [classes.activeRoute]: activeRoute(route.path)

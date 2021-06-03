@@ -1,5 +1,6 @@
 import Home from "./views/HomePage/HomePage";
 import AdminConsole from './views/AdminConsole/Adminconsole';
+import Upload from './views/Upload/Upload';
 
 const routes = [
     {
@@ -7,16 +8,11 @@ const routes = [
         name: "home",
         component: Home
     },
-    // {
-    //     path: "/about",
-    //     name: "About",
-    //     component: Home
-    // },
-    // {
-    //     path: "/store",
-    //     name: "Store",
-    //     component: Home
-    // },
+    {
+        path: "/upload",
+        name: "Upload",
+        component: Upload
+    },
     {
         path: "/admin",
         name: "Admin",

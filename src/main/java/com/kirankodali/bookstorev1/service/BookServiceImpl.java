@@ -19,5 +19,18 @@ public class BookServiceImpl implements BookService {
 		
 		return bookDaoWrapper.getAllBookDetails();
 	}
+
+	@Override
+	public Integer uploadNewBook(BookBean bookBean) throws Exception {
+		
+		
+		return bookDaoWrapper.uploadNewBook(bookBean);
+	}
+
+	@Override
+	public void deleteBookById(Integer bookId) throws Exception {
+		// TODO Auto-generated method stub
+		bookDaoWrapper.deleteBookById(bookId);
+	}
 	
 }

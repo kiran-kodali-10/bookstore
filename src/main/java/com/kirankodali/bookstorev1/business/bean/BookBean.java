@@ -52,6 +52,13 @@ public class BookBean {
 	public void setRating(Integer rating) {
 		this.rating = rating;
 	}
+
+	@Override
+	public String toString() {
+		return "BookBean [bookId=" + bookId + ", bookTitle=" + bookTitle + ", category=" + category + ", author="
+				+ author + ", rating=" + rating + "]";
+	}
+	
 	
 	
 }

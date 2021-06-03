@@ -1,0 +1,29 @@
+.notification{
+    /* width: 30%; */
+    height: 3rem;
+    background-color: #1a8ed1;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 3%;
+    align-items: center;
+    color: white;
+    position: absolute;
+    z-index: 999;
+    top: 90px;
+    right: 0px;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.notification h2,
+.notification p{
+    font-size: 1rem;
+    margin-left: 0.5rem;
+}
+
+.error{
+    background-color: #690000;
+}
+
+.success{
+    background-color: #1ad1b9;
+}

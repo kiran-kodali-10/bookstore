@@ -1,109 +1,101 @@
-import { Button, Grid, Modal, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Grid, makeStyles, Modal, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import styles from '../viewStyles';
+import Swal from 'sweetalert2';
+import { deleteBook } from '../../redux/books';
 
-const buttonStyle = {
-    backgroundColor: "#7e3ff2",
-    color: "#000",
-    marginTop: "20px",
-    '&:hover': {
-        backgroundColor: "#7e3ff290"
+const useStyles = makeStyles(styles);
+
+export default function AdminConsole() {
+    const classes = useStyles();
+
+    const books = useSelector(state => state.books.books);
+    const dispatch = useDispatch();
+
+    const handleBookDelete = (bookId) => {
+        console.log("Inside handle book delete")
+
+        Swal.fire({
+            title: "Warning",
+            icon: 'warning',
+            text: 'Are you sure',
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: "Yes, Delete",
+            cancelButtonText: "Cancel",
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    dispatch(deleteBook(bookId))
+                }
+            })
+
+        // const sendData = async () => {
+        //     const response = await fetch('/book', {
+        //         method: "DELETE",
+        //         body: JSON.stringify({
+        //             bookId: bookId
+        //         }),
+        //         mode: 'cors',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+
+        //     });
+
+        //     if(response.ok){
+        //         alert("deleted successfully");
+        //     }
+        // }
+        // sendData()
+
     }
-}
-const modalStyle = {
-    top: "30%",
-    left: "30%",
-    height: "400px",
-    width: "600px",
-    backgroundColor: "white",
-}
 
-export default function AdminConsole(props) {
-    const [books, setBooks] = useState([]);
-    const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        const getBooks = () => {
-            fetch('/books')
-                .then(response => response.json())
-                .then(data => setBooks(data))
-                .catch(error => console.log(error));
-        }
-
-        getBooks();
-    }, [])
-
-    const handleModalClose = () => {
-        setOpen(!open);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(event.target);
     }
-
     return (
         <div>
             <Grid
                 container
-                justify="center"
             >
-                <Grid
-                    item
+                <Grid item md={12} sm={12} xs={12}>
+                    <TableContainer>
+                        <Table >
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell style={{ color: "white" }}>Book Title</TableCell>
+                                    <TableCell style={{ color: "white" }}>Author</TableCell>
+                                    <TableCell style={{ color: "white" }}>Category</TableCell>
+                                    <TableCell style={{ color: "white" }}>Rating</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {
+                                    books.map((value, key) => {
 
-                >
-                    <Button onClick={() => setOpen(!open)} style={buttonStyle}>Add Book</Button>
-                    <Modal
-                        open={open}
-                        onClose={handleModalClose}
-                        style={modalStyle}
-                    >
-                        <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", padding: "20px 50px" }}>
-                            <label htmlFor="title">
-                                Book Title
-                            </label>
-                            <input type="text" placeholder="enter the book title" />
-                            <label htmlFor="bookName">
-                                Book Name
-                            </label>
-                            <input type="text" placeholder="enter the book title" />
-                            <label htmlFor="bookAuthor">
-                                Author
-                            </label>
-                            <input type="text" placeholder="enter the book title" />
-                            <label htmlFor="bookAuthor">
-                                rating
-                            </label>
-                            <input type="number" min="0" max="5" placeholder="enter the book title" />
-                            <label htmlFor="bookAuthor">
-                                Category
-                            </label>
-                            <input type="text" placeholder="enter the book title" />
-                            <Button style={buttonStyle}>Submit</Button>
-                        </div>
-                    </Modal>
+                                        return (
+                                            <TableRow key={key}>
+                                                <TableCell style={{ color: "white" }}> {value["bookTitle"]} </TableCell>
+                                                <TableCell style={{ color: "white" }}>{value["author"]}</TableCell>
+                                                <TableCell style={{ color: "white" }}>{value["category"]}</TableCell>
+                                                <TableCell style={{ color: "white" }}>
+                                                    {value["rating"]}
+                                                    <DeleteIcon
+                                                        onClick={(event) => handleBookDelete(value["bookId"])}
+                                                        className={classes.deleteIconStyle} />
+                                                </TableCell>
+                                            </TableRow>
+                                        )
+                                    })
+                                }
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                 </Grid>
-                <TableContainer>
-                    <Table >
-                        <TableHead>
-                            <TableRow>
-                                <TableCell style={{ color: "white" }}>Book Title</TableCell>
-                                <TableCell style={{ color: "white" }}>Author</TableCell>
-                                <TableCell style={{ color: "white" }}>Category</TableCell>
-                                <TableCell style={{ color: "white" }}>Rating</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {
-                                books.map((value, key) => {
-
-                                    return (
-                                        <TableRow key={key}>
-                                            <TableCell style={{ color: "white" }}> {value["bookTitle"]} </TableCell>
-                                            <TableCell style={{ color: "white" }}>{value["author"]}</TableCell>
-                                            <TableCell style={{ color: "white" }}>{value["category"]}</TableCell>
-                                            <TableCell style={{ color: "white" }}>{value["rating"]}</TableCell>
-                                        </TableRow>
-                                    )
-                                })
-                            }
-                        </TableBody>
-                    </Table>
-                </TableContainer>
 
             </Grid>
         </div>

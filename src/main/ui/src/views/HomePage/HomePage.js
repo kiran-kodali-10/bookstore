@@ -1,50 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Grid, CardContent, makeStyles, Button } from '@material-ui/core';
-import styles from './homePageStyle';
+import styles from '../viewStyles.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchBooks } from '../../redux/books';
+import { bookActions } from '../../redux/bookSlice';
+
 
 const useStyles = makeStyles(styles);
 
 export default function Home(props) {
 
     const classes = useStyles();
-    const [books, setBooks] = useState([]);
+
+    // calling state from store
+    const state = useSelector((state) => state.books);
+    // const dispatch = useDispatch();
+
     //  Api call to fetch the books
-    useEffect(() => {
-        // const fetchData =  () => {
-        //     return async () => {
-        //         const response = await fetch('/books');
-        //         if (!response.ok) {
-        //             throw new Error("Could not fetch books data");
-        //         }
-        //         const data = await response.json();
+    // useEffect(() => {
+    //     dispatch(fetchBooks());
 
-        //         return data;
-        //     }
-        // }
-        fetch('/books')
-        .then(result => result.json())
-        .then(data => setBooks(data))
-        .catch(err => console.log(err))
-
-        // console.log(response)
-        // const data = fetchData();
-        // console.log(data);
-        // try{
-        //     const books = await fetchData();
-        //     console.log(books);
-        // }
-        // catch(error){
-        //     console.log(error);
-        // }
-        // console.log(books);
-
-    }, []);
+    // }, []);
 
     return (
         <Grid container alignItems="center" spacing={5}>
             {
-                books.map((value, key) => {
-                    console.log(value);
+                state.books.map((value, key) => {
                     return (
                         <Grid
                             item

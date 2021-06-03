@@ -1,21 +1,14 @@
-import { createStore } from '@reduxjs/toolkit';
 
-const booksReducer = (state={ books: []},action) => {
-    if(action.type == 'ADD'){
-        return{
-            books
-        }
+
+import { configureStore} from '@reduxjs/toolkit';
+import booksReducer from './bookSlice';
+import uiReducer from './uiSlice';
+
+const store = configureStore({
+    reducer:{
+        books: booksReducer,
+        ui: uiReducer,
     }
-    if(action.type == 'DELETE'){
-
-    }
-    if(action.type == 'MODIFY'){
-
-    }
-
-    return state;
-}
-
-const store = createStore(booksReducer);
+});
 
 export default store;
