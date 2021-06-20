@@ -1,78 +1,61 @@
-import { Grid, Button, makeStyles, TextField } from '@material-ui/core';
+import { Button, makeStyles, Select } from '@material-ui/core';
 import styles from '../viewStyles';
 import React, { useState } from 'react';
 import CustomTextField from '../../components/CustomTextField/CustomTextField';
 import { bookActions } from '../../redux/bookSlice';
-import { useDispatch } from 'react-redux'
-import { uploadBook } from '../../redux/books'
+import { useDispatch } from 'react-redux';
+import { uploadBook } from '../../redux/books';
 
 const useStyles = makeStyles(styles);
 
 export default function AddBook(props) {
     const classes = useStyles();
 
-    const [title, setTitle] = useState("");
-    const [author, setAuthor] = useState("");
-    const [rating, setRating] = useState(0);
-    const [category, setCategory] = useState("");
-
-    const data = {
-        title: '',
+    // Single state to store all the form data
+    const [state, setState] = useState({
+        bookTitle: '',
         author: '',
         rating: 0,
         category: '',
-    }
+    })
 
     const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(`
-            title: ${title}
-            author: ${author}
-            rating: ${rating}
-            category: ${category}
+            title: ${state.title}
+            author: ${state.author}
+            rating: ${state.rating}
+            category: ${state.category}
         `);
         dispatch(bookActions.add({
-            title: title,
-            author: author,
-            rating: rating,
-            category: category,
+            title: state.bookTitle,
+            author: state.author,
+            rating: state.rating,
+            category: state.category,
             changed: true,
         }));
-        const data = {
-            bookTitle: title,
-            author: author,
-            rating: rating,
-            category: category
-        }
-
-        dispatch(uploadBook(data));
-
-        // const uploadData = async () => {
-        //     const response = await fetch('/book', {
-        //         method: "POST",
-        //         mode: 'cors',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(data)
-        //     });
-        //     if (!response.ok) {
-        //         alert("error while adding new book")
-        //     }
-        //     else {
-        //         const data = await response.json();
-        //         console.log(data);
-        //         alert("added book successfully")
-        //     }
+        // const data = {
+        //     bookTitle: title,
+        //     author: author,
+        //     rating: rating,
+        //     category: category
         // }
-        // uploadData();
-        // resetData();
+
+        dispatch(uploadBook(state));
 
     }
 
 
+    // Handle the input change
+    const newHandleChange = (event) => {
+        const name = event.target.name;
+        setState({
+            ...state,
+            [name]: event.target.value,
+        });
+    }
 
     return (
         <div>
@@ -83,36 +66,56 @@ export default function AddBook(props) {
                     type="text"
                     label="Book Title"
                     placeholder="Enter the title of book"
-                    onChange={event => setTitle(event.target.value)}
-                    value={title}
+                    onChange={newHandleChange}
+                    value={state.bookTitle}
                     required
-                />
-                <CustomTextField
-                    id="author" type="text"
-                    label="Author"
-                    placeholder="Enter the title of book"
-                    onChange={event => setAuthor(event.target.value)}
-                    value={author}
-                    required
-                />
-                <CustomTextField
-                    id="rating"
-                    type="number"
-                    InputProps={{ inputProps: { min: 0, max: 5, htmlFor: "number" } }}
-                    label="Rating" placeholder="Enter the rating"
-                    onChange={event => setRating(event.target.value)}
-                    value={rating}
-                    required
+                    inputProps={{
+                        name: "bookTitle"
+                    }}
                 />
                 <CustomTextField
                     id="author"
                     type="text"
-                    label="Category"
-                    placeholder="Enter the category"
-                    onChange={event => setCategory(event.target.value)}
-                    value={category}
+                    label="Author"
+                    placeholder="Enter the title of book"
+                    onChange={newHandleChange}
+                    value={state.author}
                     required
+                    inputProps={{
+                        name: 'author'
+                    }}
                 />
+                <CustomTextField
+                    id="rating"
+                    type="number"
+                    label="Rating" placeholder="Enter the rating"
+                    onChange={newHandleChange}
+                    value={state.rating}
+                    required
+                    inputProps={{
+                        name: 'rating',
+                        min: 0,
+                        max: 5,
+                    }}
+                />
+                <Select
+                    id="category"
+                    type="text"
+                    label="Category"
+                    placeholder="Select the category"
+                    onChange={newHandleChange}
+                    value={state.category}
+                    required
+                    className={classes.dropdown}
+                    inputProps={{
+                        name: 'category',
+                    }}
+
+                >
+                    <option value="Web Development">Web Development</option>
+                    <option value="Programming">Programming</option>
+                    <option value="Networking">Networking</option>
+                </Select>
                 <Button type="submit" className={classes.buttonStyle}>Submit</Button>
             </form>
         </div>

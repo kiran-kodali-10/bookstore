@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Card, Grid, CardContent, makeStyles, Button } from '@material-ui/core';
 import styles from '../viewStyles.js';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchBooks } from '../../redux/books';
-import { bookActions } from '../../redux/bookSlice';
-
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(styles);
 
@@ -14,13 +11,6 @@ export default function Home(props) {
 
     // calling state from store
     const state = useSelector((state) => state.books);
-    // const dispatch = useDispatch();
-
-    //  Api call to fetch the books
-    // useEffect(() => {
-    //     dispatch(fetchBooks());
-
-    // }, []);
 
     return (
         <Grid container alignItems="center" spacing={5}>

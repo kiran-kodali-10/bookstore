@@ -1,12 +1,12 @@
 import Login from './views/Login/Login';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+// import { createBrowserHistory } from 'history';
 import './App.css'
 import Admin from './layout/Admin';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-const history = createBrowserHistory();
+// const history = createBrowserHistory();
 
 function App() {
   return (

@@ -9,7 +9,8 @@ const viewStyles = (theme) => ({
         color: "#000",
         marginTop: "20px",
         '&:hover': {
-            backgroundColor: "#7e3ff290"
+            backgroundColor: "#7e3ff290",
+            transform: "translate-y(0.5)"
         }
     },
     // Upload and AdminConsole styles
@@ -37,6 +38,9 @@ const viewStyles = (theme) => ({
         padding: "30px 20px",
         marginTop: "20px",
         justifyContent: "center",
+    },
+    dropdown:{
+        color: "#fff"
     }
 })
 

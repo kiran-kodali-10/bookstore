@@ -35,7 +35,8 @@ export const uploadBook = (bookData) => {
         dispatch(uiActions.showNotification({
             status: 'pending',
             title: 'Uploading...',
-            message: 'Uploading your book'
+            message: 'Uploading your book',
+            show: true
         }));
         const sendRequest = async () => {
             const response = await fetch('/book', {
@@ -60,13 +61,15 @@ export const uploadBook = (bookData) => {
             dispatch(uiActions.showNotification({
                 status: 'success',
                 title: 'Success',
-                message: 'Successfully uploaded'
+                message: 'Successfully uploaded',
+                show: true
             }));
         } catch (error) {
             dispatch(uiActions.showNotification({
                 status: 'error',
                 title: 'Error',
-                message: 'Uploading failed'
+                message: 'Uploading failed',
+                show: true
             }));
         }
 
@@ -79,7 +82,8 @@ export const deleteBook = (data) => {
         dispatch(uiActions.showNotification({
             status: 'pending',
             title: 'Deleting...',
-            message: 'Deleting book'
+            message: 'Deleting book',
+            show: true,
         }))
         const sendData = async () => {
             const response = await fetch('/book', {
@@ -88,7 +92,7 @@ export const deleteBook = (data) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({bookId: data}),
+                body: JSON.stringify({ bookId: data }),
 
             });
 
@@ -98,18 +102,21 @@ export const deleteBook = (data) => {
         }
         try {
             sendData();
-            
+
             dispatch(uiActions.showNotification({
                 status: 'success',
                 title: 'Success',
-                message: 'Successfully Deleted'
+                message: 'Successfully Deleted',
+                show: true,
+
             }))
             dispatch(fetchBooks());
         } catch (error) {
             dispatch(uiActions.showNotification({
                 status: 'error',
                 title: 'Error',
-                message: 'Deleting failed'
+                message: 'Deleting failed',
+                show: true,
             }))
         }
 

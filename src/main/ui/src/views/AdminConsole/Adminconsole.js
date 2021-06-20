@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Grid, makeStyles, Modal, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import {  Grid, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styles from '../viewStyles';
 import Swal from 'sweetalert2';
@@ -31,32 +31,8 @@ export default function AdminConsole() {
                     dispatch(deleteBook(bookId))
                 }
             })
-
-        // const sendData = async () => {
-        //     const response = await fetch('/book', {
-        //         method: "DELETE",
-        //         body: JSON.stringify({
-        //             bookId: bookId
-        //         }),
-        //         mode: 'cors',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-
-        //     });
-
-        //     if(response.ok){
-        //         alert("deleted successfully");
-        //     }
-        // }
-        // sendData()
-
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(event.target);
-    }
     return (
         <div>
             <Grid

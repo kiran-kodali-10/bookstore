@@ -30,23 +30,17 @@ export default function Admin(props) {
     const classes = useStyles();
 
     let notification = useSelector((state) => state.ui.notification);
+    // const [dummy, setDummy] = useState(true)
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchBooks());
-    }, []);
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         notification = null;
-    //         console.log(notification)
-    //     }, 3000);
-    // }, [notification])
+    }, [dispatch]);
 
     return (
         <div>
-            {notification !== null ?
+            {notification.show ?
                 <Notification
                     status={notification.status}
                     title={notification.title}
