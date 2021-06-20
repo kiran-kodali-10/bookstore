@@ -53,6 +53,14 @@ export const uploadBook = (bookData) => {
             else {
                 const data = await response.json();
                 console.log(data);
+                // Write the fetch logic here to be in sync or assign the book id which was returned in data
+                dispatch(bookActions.add({
+                    bookId: data,
+                    bookTitle: bookData.bookTitle,
+                    author: bookData.author,
+                    rating: bookData.rating,
+                    category: bookData.category,
+                }))
                 alert("added book successfully")
             }
         }

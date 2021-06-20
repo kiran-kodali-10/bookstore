@@ -29,13 +29,13 @@ export default function AddBook(props) {
             rating: ${state.rating}
             category: ${state.category}
         `);
-        dispatch(bookActions.add({
-            title: state.bookTitle,
-            author: state.author,
-            rating: state.rating,
-            category: state.category,
-            changed: true,
-        }));
+        // dispatch(bookActions.add({
+        //     bookTitle: state.bookTitle,
+        //     author: state.author,
+        //     rating: state.rating,
+        //     category: state.category,
+        //     // changed: true,
+        // }));
         // const data = {
         //     bookTitle: title,
         //     author: author,

@@ -29,12 +29,9 @@ public class BookController {
 		List<BookBean> bookBeanList = new ArrayList<BookBean>();
 		try {
 			bookBeanList = bookService.getAllBookDetails();
-			
 		} catch (Exception e) {
-			
 			e.printStackTrace();
 		}
-		
 		return new ResponseEntity<List<BookBean>>(bookBeanList, HttpStatus.OK);
 	}
 	

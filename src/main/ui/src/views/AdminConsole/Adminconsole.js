@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {  Grid, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import styles from '../viewStyles';
 import Swal from 'sweetalert2';
 import { deleteBook } from '../../redux/books';
@@ -33,6 +34,10 @@ export default function AdminConsole() {
             })
     }
 
+    const handleBookEdit = (bookId) =>{
+        console.log(`book id: ${bookId}`);
+    }
+
     return (
         <div>
             <Grid
@@ -61,8 +66,9 @@ export default function AdminConsole() {
                                                 <TableCell style={{ color: "white" }}>
                                                     {value["rating"]}
                                                     <DeleteIcon
-                                                        onClick={(event) => handleBookDelete(value["bookId"])}
+                                                        onClick={() => handleBookDelete(value["bookId"])}
                                                         className={classes.deleteIconStyle} />
+                                                    <EditIcon onClick={()=> handleBookEdit(value["bookId"])} className={classes.editIconStyle} />
                                                 </TableCell>
                                             </TableRow>
                                         )

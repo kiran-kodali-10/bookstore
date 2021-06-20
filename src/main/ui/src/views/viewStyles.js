@@ -41,6 +41,10 @@ const viewStyles = (theme) => ({
     },
     dropdown:{
         color: "#fff"
+    },
+    editIconStyle: {
+        color: "#0057a4",
+        paddingLeft: "5%"
     }
 })
 

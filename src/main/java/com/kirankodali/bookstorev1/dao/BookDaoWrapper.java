@@ -20,6 +20,7 @@ public class BookDaoWrapper {
 	public List<BookBean> getAllBookDetails(){
 		List<BookBean> bookBeanList = new ArrayList<>();
 		List<BookEntity> bookEntityList = bookDao.findAll();
+		
 		// Convert entity class to bean class 
 		bookEntityList.forEach((bookEntity)->{
 			BookBean bookBean = new BookBean();
