@@ -32,5 +32,11 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		bookDaoWrapper.deleteBookById(bookId);
 	}
+
+	@Override
+	public void updateBookDetails(BookBean bookBean) throws Exception {
+		// TODO Auto-generated method stub
+		bookDaoWrapper.updateBookDetails(bookBean);
+	}
 	
 }

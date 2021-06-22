@@ -9,7 +9,7 @@ export const fetchBooks = () => {
 
             if (!response.ok) {
                 // console.log(response.ok)
-                throw new Error('Could not fetch cart data!');
+                throw new Error('Could not data!');
             }
 
             const data = await response.json();
@@ -132,4 +132,45 @@ export const deleteBook = (data) => {
 
 
     };
+}
+
+export const updateBook =(data)=>{
+    return async (dispatch) =>{
+
+        const sendUpdateRequest = async ()=>{
+
+            const response = await fetch('/book',{
+                method: "PUT",
+                headers:{
+                    'Content-Type':'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            if(!response.ok){
+                throw new Error("error occured");
+            }
+            else{
+                // const data = await response.json();
+                // dispatch(bookActions.update({
+                //     bookId: data.bookId,
+                //     bookTitle: data.bookTitle,
+                //     author: data.author,
+                //     category: data.category,
+                // }))
+                alert("updated successfully");
+                 await dispatch(fetchBooks());
+            }
+
+        }
+
+        try{
+           await sendUpdateRequest();
+        }
+        catch(error){
+
+        }
+
+
+    }
 }

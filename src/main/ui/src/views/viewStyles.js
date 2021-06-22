@@ -1,4 +1,4 @@
-const viewStyles = (theme) => ({
+const viewStyles = theme => ({
     // Home Styles
     cardStyle: {
         backgroundColor: "rgb(42, 42, 42)",
@@ -15,11 +15,14 @@ const viewStyles = (theme) => ({
     },
     // Upload and AdminConsole styles
     modalStyle: {
+        position: "absolute",
         top: "30%",
-        left: "30%",
-        height: "400px",
-        width: "600px",
+        left: "40%",
+        padding: "20px 30px",
         backgroundColor: "white",
+        [theme.breakpoints.down('sm')]:{
+            left: "10%"
+        }
     },
     deleteIconStyle: {
         color: 'red',
@@ -45,7 +48,13 @@ const viewStyles = (theme) => ({
     editIconStyle: {
         color: "#0057a4",
         paddingLeft: "5%"
+    },
+    editForm:{
+        display: "flex",
+        flexDirection: "column",
+        padding: "10px"
     }
+
 })
 
 export default viewStyles;

@@ -10,4 +10,6 @@ public interface BookService {
 	Integer uploadNewBook(BookBean bookBean) throws Exception;
 	
 	void deleteBookById(Integer bookId) throws Exception;
+	
+	void updateBookDetails(BookBean bookBean) throws Exception;
 }

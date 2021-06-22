@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {  Grid, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import { Grid, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import styles from '../viewStyles';
 import Swal from 'sweetalert2';
-import { deleteBook } from '../../redux/books';
+import { deleteBook, updateBook } from '../../redux/books';
+import EditBook from './EditBook';
 
 const useStyles = makeStyles(styles);
 
@@ -14,6 +15,11 @@ export default function AdminConsole() {
 
     const books = useSelector(state => state.books.books);
     const dispatch = useDispatch();
+
+    const [state, setState] = useState({
+        open: false,
+        bookDetails: {}
+    })
 
     const handleBookDelete = (bookId) => {
         console.log("Inside handle book delete")
@@ -34,12 +40,28 @@ export default function AdminConsole() {
             })
     }
 
-    const handleBookEdit = (bookId) =>{
-        console.log(`book id: ${bookId}`);
+    // Function to handle the modal close
+    const handleBookEdit = (book) => {
+        console.log(`book id: ${book['bookTitle']}`);
+        setState({
+            // ...state,
+            open: !state.open,
+            bookDetails: book
+        })
+    }
+
+    const handleEditSubmit = (bookDetails) =>{
+        dispatch(updateBook(bookDetails));
+        // console.log(bookDetails);
+        setState({
+            ...state,
+            open: !state.open,
+        })
     }
 
     return (
         <div>
+            <EditBook open={state.open} onClose={handleBookEdit} bookDetails={state.bookDetails} handleEditSubmit={handleEditSubmit} />
             <Grid
                 container
             >
@@ -57,7 +79,7 @@ export default function AdminConsole() {
                             <TableBody>
                                 {
                                     books.map((value, key) => {
-
+                                        // console.log(`Inside books map, value: ${value}`)
                                         return (
                                             <TableRow key={key}>
                                                 <TableCell style={{ color: "white" }}> {value["bookTitle"]} </TableCell>
@@ -68,7 +90,7 @@ export default function AdminConsole() {
                                                     <DeleteIcon
                                                         onClick={() => handleBookDelete(value["bookId"])}
                                                         className={classes.deleteIconStyle} />
-                                                    <EditIcon onClick={()=> handleBookEdit(value["bookId"])} className={classes.editIconStyle} />
+                                                    <EditIcon onClick={() => handleBookEdit(value)} className={classes.editIconStyle} />
                                                 </TableCell>
                                             </TableRow>
                                         )

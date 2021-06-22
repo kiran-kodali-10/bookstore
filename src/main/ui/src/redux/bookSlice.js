@@ -19,16 +19,17 @@ export const bookSlice = createSlice({
         delete: (state) => {
 
         },
-        update: (state) => {
-
+        update: (state, action) => {
+            // state.books.forEach((book)=>{
+            //     if(book.bookId === action.payload.bookId){
+                    
+            //     }
+            // })
         },
         getBooks: (state, action) => {
             state.books = action.payload.books;
             state.isLoading = false;
         },
-        updateBookId: (state, action) =>{
-
-        }
     }
 
 });
