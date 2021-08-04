@@ -1,4 +1,4 @@
-const navbarStyles = ({
+const navbarStyles = theme => ({
     heading: {
         // marginLeft: "20px",
     },
@@ -27,6 +27,14 @@ const navbarStyles = ({
     },
     appBarStyle: {
         backgroundColor: "rgb(42, 42, 42)",
+    },
+    drawerPaper:{
+        background: "rgb(42, 42, 42)",
+        color: "#fff",
+        padding: "30px",
+    },
+    listItems:{
+        marginTop: "15px",
     }
 })
 
